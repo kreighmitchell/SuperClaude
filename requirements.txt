@@ -1,6 +1,6 @@
 # Core runtime dependencies for SuperClaude.
 pyyaml>=6.0
-aiofiles>=23.0
+aiofiles>=25.1.0
 python-dotenv>=1.0
 rich>=13.0
 click>=8.1
