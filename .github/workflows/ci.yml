@@ -31,10 +31,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
 
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -88,7 +88,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
         with:
           fetch-depth: 0
 
@@ -135,7 +135,7 @@ jobs:
         if: steps.validate_providers.outputs.skip_review != 'true' && env.BEDROCK_CONFIGURED == 'true'
         id: bedrock_review
         continue-on-error: true
-        uses: anthropics/claude-code-action@58dbe8ed6879f0d3b02ac295b20d5fdfe7733e0c  # v1
+        uses: anthropics/claude-code-action@d70510b174a1244958df0b03166a54912811f3e6  # v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           use_bedrock: "true"
@@ -204,7 +204,7 @@ jobs:
       - name: Claude Review (Anthropic API - Fallback)
         if: steps.validate_providers.outputs.skip_review != 'true' && env.ANTHROPIC_KEY_SET == 'true' && (env.BEDROCK_CONFIGURED != 'true' || steps.bedrock_review.outcome != 'success')
         id: anthropic_review
-        uses: anthropics/claude-code-action@58dbe8ed6879f0d3b02ac295b20d5fdfe7733e0c  # v1
+        uses: anthropics/claude-code-action@d70510b174a1244958df0b03166a54912811f3e6  # v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -305,10 +305,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v6
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
@@ -332,7 +332,7 @@ jobs:
 
       - name: Upload coverage artifact
         if: matrix.python-version == '3.10'
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f  # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7
         with:
           name: coverage-report
           path: coverage.xml
@@ -340,7 +340,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.10'
-        uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2  # v6
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5  # v6
         with:
           files: ./coverage.xml
           fail_ci_if_error: false
@@ -358,10 +358,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
 
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -397,10 +397,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
 
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -417,7 +417,7 @@ jobs:
         run: twine check dist/*
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f  # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7
         with:
           name: dist
           path: dist/
@@ -457,13 +457,13 @@ jobs:
 
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333  # v8
         with:
           name: dist
           path: dist/
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v6
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -535,10 +535,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
 
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -576,20 +576,20 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
         if: steps.check-token.outputs.skip != 'true'
         with:
           fetch-depth: 0
 
       - name: Download coverage report
         if: steps.check-token.outputs.skip != 'true'
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333  # v8
         with:
           name: coverage-report
 
       - name: Set up Python
         if: steps.check-token.outputs.skip != 'true'
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -609,7 +609,7 @@ jobs:
       - name: SonarCloud Scan
         if: steps.check-token.outputs.skip != 'true'
         continue-on-error: true
-        uses: SonarSource/sonarqube-scan-action@299e4b793aaa83bf2aba7c9c14bedbb485688ec4  # v7
+        uses: SonarSource/sonarqube-scan-action@4d1dc0c91ee400dcf8a6dddf2f705ac36542e304  # v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
@@ -625,7 +625,7 @@ jobs:
       - name: SonarCloud Quality Gate
         if: steps.check-token.outputs.skip != 'true' && success()
         continue-on-error: true
-        uses: SonarSource/sonarqube-quality-gate-action@d304d050d930b02a896b0f85935344f023928496  # v1
+        uses: SonarSource/sonarqube-quality-gate-action@7a5fffe8e523c40e0c740b6bc2712ab503e52efa  # v1
         timeout-minutes: 5
         env:
           SONAR_HOST_URL: https://sonarcloud.io
